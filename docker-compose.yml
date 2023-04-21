@@ -1,0 +1,13 @@
+services:
+  jupyter-spark:
+    container_name: jupyter-spark
+    image: jupyter/all-spark-notebook
+    ports:
+      - "8888:8888"
+    volumes:
+      - ./notebooks:/home/jovyan/work
+    environment:
+      PYSPARK_DRIVER_PYTHON: jupyter
+      PYSPARK_DRIVER_PYTHON_OPTS: "notebook --allow-root"
+      GRANT_SUDO: "yes"
+    command: pyspark --packages graphframes:graphframes:0.8.2-spark3.2-s_2.12
